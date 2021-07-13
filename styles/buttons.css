@@ -15,3 +15,13 @@
 .btn--primary:hover {
   background-color: hsl(0, 0%, 50%);
 }
+
+.btn--danger {
+  color: hsl(0, 0%, 60%);
+  border: 1px solid hsl(0, 0%, 60%);
+}
+
+.btn--danger:hover {
+  color: hsl(0, 100%, 50%);
+  border: 1px solid hsl(0, 100%, 50%);
+}

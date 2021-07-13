@@ -1,0 +1,43 @@
+.container {
+  padding: 1em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid hsl(0, 0%, 60%);
+}
+
+.container:last-child {
+  border-bottom: none;
+  padding-bottom: 1em;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.row {
+  margin-top: .5em;
+}
+
+.label {
+  margin-right: .2em;
+}
+
+.value {
+  font-weight: 300;
+}
+
+.indented {
+  margin-top: .4em;
+  margin-left: 1em;
+}
+
+.instructions {
+  white-space: pre-wrap;
+}

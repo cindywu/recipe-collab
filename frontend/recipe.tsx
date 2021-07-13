@@ -1,5 +1,6 @@
 import React from 'react'
 import IngredientList from './ingredient-list'
+import styles from './recipe.module.css'
 
 type Props = {
   recipe: any
@@ -7,31 +8,31 @@ type Props = {
 
 export default function Recipe({ recipe }: Props) {
   return (
-    <div>
-      <div>
-        <h3>{recipe.name}</h3>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h3  className={styles.title}>{recipe.name}</h3>
         <div>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button className="btn btn--primary mr-1">Edit</button>
+          <button className="btn btn--danger">Delete</button>
         </div>
       </div>
-      <div>
-        <span>Cook Time:</span>
-        <span>{recipe.cookTime}</span>
+      <div className={styles.row}>
+        <span className={styles.label}>Cook Time:</span>
+        <span className={styles.value}>{recipe.cookTime}</span>
       </div>
-      <div>
-        <span>Servings:</span>
-        <span>{recipe.servings}</span>
+      <div className={styles.row}>
+        <span className={styles.label}>Servings:</span>
+        <span className={styles.value}>{recipe.servings}</span>
       </div>
-      <div>
-        <span>Instructions</span>
-        <div>
+      <div className={styles.row}>
+        <span className={styles.label}>Instructions</span>
+        <div className={`${styles.value} ${styles.instructions} ${styles.indented}`}>
           {recipe.instructions}
         </div>
       </div>
-      <div>
-        <span>Ingredients</span>
-        <div>
+      <div className={styles.row}>
+        <span className={styles.label}>Ingredients</span>
+        <div className={`${styles.value} ${styles.indented}`}>
           <IngredientList ingredients={recipe.ingredients} />
         </div>
       </div>

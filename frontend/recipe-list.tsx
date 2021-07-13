@@ -5,9 +5,10 @@ import styles from './recipe-list.module.css'
 
 type Props = {
   rep: any
+  handleRecipeAdd: (order: any) => void
 }
 
-export default function RecipeList({ rep } : Props) {
+export default function RecipeList({ rep, handleRecipeAdd } : Props) {
   const recipes = useSubscribe(
     rep,
     async tx => {
@@ -17,6 +18,13 @@ export default function RecipeList({ rep } : Props) {
     },
     [],
   )
+
+  function onRecipeAdd() {
+    const last = recipes.length && recipes[recipes.length - 1][1]
+    const order = (last?.order ?? 0) + 1
+    handleRecipeAdd(order)
+  }
+
 
   return (
     <div className={styles.container}>
@@ -31,7 +39,12 @@ export default function RecipeList({ rep } : Props) {
         })}
       </div>
       <div className={styles.addRecipeBtnContainer}>
-        <button className="btn btn--primary">Add Recipe</button>
+        <button
+          className="btn btn--primary"
+          onClick={onRecipeAdd}
+        >
+          Add Recipe
+        </button>
       </div>
     </div>
   )

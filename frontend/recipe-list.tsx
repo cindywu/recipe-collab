@@ -25,7 +25,6 @@ export default function RecipeList({ rep, handleRecipeAdd } : Props) {
     handleRecipeAdd(order)
   }
 
-
   return (
     <div className={styles.container}>
       <div>

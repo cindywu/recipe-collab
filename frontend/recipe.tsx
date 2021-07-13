@@ -1,4 +1,5 @@
 import React from 'react'
+import IngredientList from './ingredient-list'
 
 type Props = {
   recipe: any
@@ -26,6 +27,12 @@ export default function Recipe({ recipe }: Props) {
         <span>Instructions</span>
         <div>
           {recipe.instructions}
+        </div>
+      </div>
+      <div>
+        <span>Ingredients</span>
+        <div>
+          <IngredientList ingredients={recipe.ingredients} />
         </div>
       </div>
     </div>

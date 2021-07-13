@@ -18,15 +18,18 @@ export default function RecipeList({ rep } : Props) {
   )
 
   return (
-    <div>
-      {recipes.map(([k, v]) => {
-        return (
-          <Recipe
-            key={k}
-            recipe={v}
-          />
-        )
-      })}
-    </div>
+    <>
+      <div>
+        {recipes.map(([k, v]) => {
+          return (
+            <Recipe
+              key={k}
+              recipe={v}
+            />
+          )
+        })}
+      </div>
+      <button>Add Recipe</button>
+    </>
   )
 }

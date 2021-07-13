@@ -1,0 +1,17 @@
+.btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  padding: 1em 4em;
+  cursor: pointer;
+}
+
+.btn--primary {
+  color: white;
+  background-color: hsl(0, 0%, 60%);
+}
+
+.btn--primary:hover {
+  background-color: hsl(0, 0%, 50%);
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import Recipe from './recipe'
 import { useSubscribe } from 'replicache-react'
+import styles from './recipe-list.module.css'
 
 type Props = {
   rep: any
@@ -18,7 +19,7 @@ export default function RecipeList({ rep } : Props) {
   )
 
   return (
-    <>
+    <div className={styles.container}>
       <div>
         {recipes.map(([k, v]) => {
           return (
@@ -29,7 +30,9 @@ export default function RecipeList({ rep } : Props) {
           )
         })}
       </div>
-      <button>Add Recipe</button>
-    </>
+      <div className={styles.addRecipeBtnContainer}>
+        <button className="btn btn--primary">Add Recipe</button>
+      </div>
+    </div>
   )
 }

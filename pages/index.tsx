@@ -23,6 +23,7 @@ export default function Home() {
             order,
           }) {
             await tx.put (`recipe/${id}`, {
+              id,
               name,
               servings,
               cookTime,
@@ -30,6 +31,9 @@ export default function Home() {
               ingredients,
               order,
             })
+          },
+          async deleteRecipe(tx, { id }) {
+            await tx.del(`recipe/${id}`)
           },
         }
       })
@@ -52,7 +56,13 @@ export default function Home() {
     })
   }
 
-  return rep && <RecipeList rep={rep} handleRecipeAdd={handleRecipeAdd}/>
+  function handleRecipeDelete(id: string) {
+    rep.mutate.deleteRecipe({
+      id: id
+    })
+  }
+
+  return rep && <RecipeList rep={rep} handleRecipeAdd={handleRecipeAdd} handleRecipeDelete={handleRecipeDelete}/>
 }
 
 function listen(rep: any) {

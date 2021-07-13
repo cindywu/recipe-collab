@@ -6,9 +6,10 @@ import styles from './recipe-list.module.css'
 type Props = {
   rep: any
   handleRecipeAdd: (order: any) => void
+  handleRecipeDelete: (id: any) => void
 }
 
-export default function RecipeList({ rep, handleRecipeAdd } : Props) {
+export default function RecipeList({ rep, handleRecipeAdd, handleRecipeDelete } : Props) {
   const recipes = useSubscribe(
     rep,
     async tx => {
@@ -25,6 +26,10 @@ export default function RecipeList({ rep, handleRecipeAdd } : Props) {
     handleRecipeAdd(order)
   }
 
+  function onRecipeDelete(id: any) {
+    handleRecipeDelete(id)
+  }
+
   return (
     <div className={styles.container}>
       <div>
@@ -33,6 +38,7 @@ export default function RecipeList({ rep, handleRecipeAdd } : Props) {
             <Recipe
               key={k}
               recipe={v}
+              onRecipeDelete={onRecipeDelete}
             />
           )
         })}

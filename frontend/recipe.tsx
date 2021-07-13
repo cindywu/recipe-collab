@@ -4,16 +4,22 @@ import styles from './recipe.module.css'
 
 type Props = {
   recipe: any
+  onRecipeDelete: (id: any) => void
 }
 
-export default function Recipe({ recipe }: Props) {
+export default function Recipe({ recipe, onRecipeDelete }: Props) {
+
+  function onDeleteClick() {
+    onRecipeDelete(recipe.id)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h3  className={styles.title}>{recipe.name}</h3>
         <div>
           <button className="btn btn--primary mr-1">Edit</button>
-          <button className="btn btn--danger">Delete</button>
+          <button className="btn btn--danger" onClick={onDeleteClick}>Delete</button>
         </div>
       </div>
       <div className={styles.row}>

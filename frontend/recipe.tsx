@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import IngredientList from './ingredient-list'
 import styles from './recipe.module.css'
+import { RecipeContext } from '../pages/index'
 
 type Props = {
   recipe: any
-  onRecipeDelete: (id: any) => void
 }
 
-export default function Recipe({ recipe, onRecipeDelete }: Props) {
+export default function Recipe({ recipe }: Props) {
+  const { handleRecipeDelete } = useContext(RecipeContext)
 
   function onDeleteClick() {
-    onRecipeDelete(recipe.id)
+    handleRecipeDelete(recipe.id)
   }
 
   return (

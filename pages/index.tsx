@@ -3,8 +3,25 @@ import RecipeList from '../frontend/recipe-list'
 import { Replicache } from 'replicache'
 import { v4 as uuidv4 } from 'uuid'
 
+type RecipesContextType = {
+  handleRecipeAdd: (order: any) => void,
+  handleRecipeDelete: (id: string) => void
+}
+
+const defaultContextValue= {
+  handleRecipeAdd: (order: any) => {},
+  handleRecipeDelete: (id: string) => {},
+}
+
+export const RecipeContext = React.createContext<RecipesContextType>(defaultContextValue)
+
 export default function Home() {
   const [rep, setRep] = useState<any>(null)
+
+  const recipeContextValue = {
+    handleRecipeAdd,
+    handleRecipeDelete,
+  }
 
   useEffect(() => {
     (async () => {
@@ -62,7 +79,14 @@ export default function Home() {
     })
   }
 
-  return rep && <RecipeList rep={rep} handleRecipeAdd={handleRecipeAdd} handleRecipeDelete={handleRecipeDelete}/>
+  return (
+    rep &&
+    <RecipeContext.Provider value={recipeContextValue}>
+    <RecipeList
+      rep={rep}
+    />
+    </RecipeContext.Provider>
+  )
 }
 
 function listen(rep: any) {

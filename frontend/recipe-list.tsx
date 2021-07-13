@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Recipe from './recipe'
 import { useSubscribe } from 'replicache-react'
 import styles from './recipe-list.module.css'
+import { RecipeContext } from '../pages/index'
 
 type Props = {
   rep: any
-  handleRecipeAdd: (order: any) => void
-  handleRecipeDelete: (id: any) => void
 }
 
-export default function RecipeList({ rep, handleRecipeAdd, handleRecipeDelete } : Props) {
+export default function RecipeList({ rep } : Props) {
+  const { handleRecipeAdd } = useContext(RecipeContext)
+
   const recipes = useSubscribe(
     rep,
     async tx => {
@@ -26,10 +27,6 @@ export default function RecipeList({ rep, handleRecipeAdd, handleRecipeDelete } 
     handleRecipeAdd(order)
   }
 
-  function onRecipeDelete(id: any) {
-    handleRecipeDelete(id)
-  }
-
   return (
     <div className={styles.container}>
       <div>
@@ -38,7 +35,6 @@ export default function RecipeList({ rep, handleRecipeAdd, handleRecipeDelete } 
             <Recipe
               key={k}
               recipe={v}
-              onRecipeDelete={onRecipeDelete}
             />
           )
         })}

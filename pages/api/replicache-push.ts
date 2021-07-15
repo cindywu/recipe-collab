@@ -38,6 +38,9 @@ export default async (req: any, res: any) => {
           case 'deleteRecipe':
             await deleteRecipe(t, mutation.args)
             break
+          case 'updateRecipe':
+            await updateRecipe(t, mutation.args, version);
+            break
           default:
             throw new Error(`Unknown mutation: ${mutation.name}`)
         }
@@ -97,6 +100,22 @@ async function deleteRecipe(t: any, { id }: any) {
   await t.none(
     'DELETE FROM recipe WHERE id = ($1)',
     [id],
+  )
+}
+
+async function updateRecipe(t: any, {id, name, servings, cookTime, instructions, ingredients, order}: any, version: any) {
+  await t.none(
+    `UPDATE recipe
+    SET
+    name = ($2),
+    servings = ($3),
+    cooktime = ($4),
+    instructions = ($5),
+    ingredients = ($6),
+    ord = ($7),
+    version = ($8)
+    WHERE id = ($1)`,
+    [id, name, servings, cookTime, instructions, ingredients, order, version],
   )
 }
 

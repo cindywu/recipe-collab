@@ -10,7 +10,7 @@ type Props = {
 }
 
 export default function RecipeList({ rep } : Props) {
-  const { handleRecipeAdd } = useContext(RecipeContext)
+  const { handleRecipeAdd, handleRecipeChange } = useContext(RecipeContext)
   const [selectedRecipeId, setSelectedRecipeId] = useState<string>(null)
 
   const recipes = useSubscribe(
@@ -30,11 +30,18 @@ export default function RecipeList({ rep } : Props) {
     setSelectedRecipeId(id)
   }
 
-
   function onRecipeAdd() {
     const last = recipes.length && recipes[recipes.length - 1][1]
     const order = (last?.order ?? 0) + 1
     handleRecipeAdd(order)
+  }
+
+  function onRecipeChange(recipe: any){
+    console.log('i am in onRecipeChange', recipe)
+    //TODO: go through all recipes and find the largest order and + 1 to that
+    const last = recipes.length && recipes[recipes.length - 1][1]
+    const order = (last?.order ?? 0) * 10
+    handleRecipeChange(order, recipe)
   }
 
   return (
@@ -58,7 +65,7 @@ export default function RecipeList({ rep } : Props) {
           Add Recipe
         </button>
       </div>
-      {selectedRecipe && <RecipeEdit recipe={selectedRecipe[1]} />}
+      {selectedRecipe && <RecipeEdit recipe={selectedRecipe[1]} onRecipeChange={onRecipeChange}/>}
     </div>
   )
 }

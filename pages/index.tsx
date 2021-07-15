@@ -8,11 +8,13 @@ import { useSubscribe } from 'replicache-react'
 type RecipesContextType = {
   handleRecipeAdd: (order: any) => void,
   handleRecipeDelete: (id: string) => void
+  handleRecipeChange: (id: string, recipe: any) => void
 }
 
 const defaultContextValue= {
   handleRecipeAdd: (order: any) => {},
   handleRecipeDelete: (id: string) => {},
+  handleRecipeChange: (id: string, recipe: any) => {}
 }
 
 export const RecipeContext = React.createContext<RecipesContextType>(defaultContextValue)
@@ -23,6 +25,7 @@ export default function Home() {
   const recipeContextValue = {
     handleRecipeAdd,
     handleRecipeDelete,
+    handleRecipeChange
   }
 
   useEffect(() => {
@@ -54,6 +57,25 @@ export default function Home() {
           async deleteRecipe(tx, { id }) {
             await tx.del(`recipe/${id}`)
           },
+          async updateRecipe(tx, {
+            id,
+            name,
+            servings,
+            cookTime,
+            instructions,
+            ingredients,
+            order,
+          }) {
+            await tx.put(`recipe/${id}`, {
+              id,
+              name,
+              servings,
+              cookTime,
+              instructions,
+              ingredients,
+              order,
+            })
+          },
         }
       })
       listen(rep)
@@ -61,7 +83,7 @@ export default function Home() {
     })()
   }, [])
 
-  function handleRecipeAdd(order: any) {
+  function handleRecipeAdd(order: any,) {
     rep.mutate.createRecipe({
       id: uuidv4(),
       name: 'New',
@@ -72,6 +94,19 @@ export default function Home() {
         { id: uuidv4(), name: 'Name', amount: '1 Tablespoon' }
       ],
       order,
+    })
+  }
+
+  function handleRecipeChange(order: any, recipe: any) {
+    console.log('recipe hi', recipe, 'order', order)
+    rep.mutate.updateRecipe({
+      id: recipe.id,
+      name: recipe.name,
+      servings: recipe.servings,
+      cookTime: recipe.cookTime,
+      instructions: recipe.instructions,
+      ingredients: recipe.ingredients,
+      order: order,
     })
   }
 

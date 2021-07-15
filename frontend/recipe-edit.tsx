@@ -4,10 +4,16 @@
 
   type Props = {
     recipe: any
+    onRecipeChange: (recipe: any) => void
   }
 
-  export default function RecipeEdit({ recipe }: Props) {
+  export default function RecipeEdit({ recipe, onRecipeChange }: Props) {
     console.log('recipe', recipe)
+
+    function handleChange(changes: any) {
+      onRecipeChange({ ...recipe, ...changes })
+    }
+
     return (
       <div className={styles.container}>
         <div className={styles.removeBtnContainer}>
@@ -26,6 +32,7 @@
             id="name"
             value={recipe.name}
             className={styles.input}
+            onInput={ e => handleChange({ name: e.target.value })}
           />
           <label
             htmlFor="cookTime"

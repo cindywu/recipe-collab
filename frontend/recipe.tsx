@@ -44,7 +44,7 @@ export default function Recipe({ recipe, handleRecipeSelect }: Props) {
       <div className={styles.row}>
         <span className={styles.label}>Ingredients</span>
         <div className={`${styles.value} ${styles.indented}`}>
-          <IngredientList ingredients={recipe.ingredients} />
+          {/* <IngredientList ingredients={recipe.ingredients} /> */}
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ type Props = {
 
 export default function RecipeList({ rep } : Props) {
   const { handleRecipeAdd, handleRecipeChange } = useContext(RecipeContext)
-  const [selectedRecipeId, setSelectedRecipeId] = useState<string>(null)
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string>('')
 
   const recipes = useSubscribe(
     rep,
@@ -22,9 +22,7 @@ export default function RecipeList({ rep } : Props) {
     },
     [],
   )
-  const selectedRecipe = recipes.find(recipe => recipe[1].id === selectedRecipeId)
-  console.log('selectedRecipe', selectedRecipe)
-  console.log('recipes', recipes)
+  const selectedRecipe = recipes.find((recipe: any) => recipe[1].id === selectedRecipeId)
 
   function handleRecipeSelect(id: any) {
     setSelectedRecipeId(id)

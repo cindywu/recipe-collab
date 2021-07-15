@@ -32,7 +32,7 @@
             id="name"
             value={recipe.name}
             className={styles.input}
-            onInput={ e => handleChange({ name: e.target.value })}
+            onInput={ (e: any) => handleChange({ name: e.target.value })}
           />
           <label
             htmlFor="cooktime"

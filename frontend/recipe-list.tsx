@@ -29,13 +29,13 @@ export default function RecipeList({ rep } : Props) {
   }
 
   function onRecipeAdd() {
-    const maxOrder = recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b)
+    const maxOrder = recipes ? recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b) : 0
     const order = maxOrder + 1
     handleRecipeAdd(order)
   }
 
   function onRecipeChange(recipe: any){
-    const maxOrder = recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b)
+    const maxOrder = recipes ? recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b) : 0
     const order = maxOrder + 1
     handleRecipeChange(order, recipe)
   }

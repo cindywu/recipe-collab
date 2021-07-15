@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import RecipeList from '../frontend/recipe-list'
+import RecipeEdit from '../frontend/recipe-edit'
 import { Replicache } from 'replicache'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -85,6 +86,7 @@ export default function Home() {
     <RecipeList
       rep={rep}
     />
+    <RecipeEdit />
     </RecipeContext.Provider>
   )
 }

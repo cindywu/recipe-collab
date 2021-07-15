@@ -25,3 +25,11 @@
   color: hsl(0, 100%, 50%);
   border: 1px solid hsl(0, 100%, 50%);
 }
+
+.btn--remove {
+  padding: 0;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+}

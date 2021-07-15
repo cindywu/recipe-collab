@@ -15,7 +15,7 @@ export default async (req: any, res: any) => {
             pull.clientID,
           )
         )?.last_mutation_id ?? '0',
-      );
+      )
       const changed = await db.manyOrNone(
         'select id, name, servings, cooktime, instructions, ingredients, ord from recipe where version > $1',
         parseInt(pull.cookie ?? 0),

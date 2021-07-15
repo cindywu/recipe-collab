@@ -1,0 +1,58 @@
+.container {
+  padding: 2em;
+  padding-top: 1em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 50%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.removeBtnContainer {
+  text-align: end;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: .5em;
+  column-gap: 2em;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.input {
+  border: 1px solid black;
+  font-size: inherit;
+  padding: .2em .5em;
+  outline: none;
+  width: 100%;
+}
+
+textArea.input {
+  resize: none;
+  height: 8em;
+}
+
+.ingredientGrid {
+  display: grid;
+  gap: .5em;
+  grid-template-columns: repeat(3, auto);
+  margin-top: 1em;
+  margin-left: 2em;
+}
+
+.addIngredientBtnContainer {
+  margin-top: 1em;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .detailsGrid,
+  .ingredientGrid {
+    grid-template-columns: 1fr;
+  }
+}

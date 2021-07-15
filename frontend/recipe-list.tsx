@@ -11,7 +11,7 @@ type Props = {
 
 export default function RecipeList({ rep } : Props) {
   const { handleRecipeAdd, handleRecipeChange } = useContext(RecipeContext)
-  const [selectedRecipeId, setSelectedRecipeId] = useState<string>('')
+  const [selectedRecipeId, setSelectedRecipeId] = useState<any>(null)
 
   const recipes = useSubscribe(
     rep,
@@ -29,13 +29,13 @@ export default function RecipeList({ rep } : Props) {
   }
 
   function onRecipeAdd() {
-    const maxOrder = recipes ? recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b) : 0
+    const maxOrder = recipes.length === 0 ? 0 : recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b)
     const order = maxOrder + 1
     handleRecipeAdd(order)
   }
 
   function onRecipeChange(recipe: any){
-    const maxOrder = recipes ? recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b) : 0
+    const maxOrder = recipes.length === 0 ? 0 : recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b)
     const order = maxOrder + 1
     handleRecipeChange(order, recipe)
   }

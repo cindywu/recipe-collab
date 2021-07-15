@@ -31,16 +31,14 @@ export default function RecipeList({ rep } : Props) {
   }
 
   function onRecipeAdd() {
-    const last = recipes.length && recipes[recipes.length - 1][1]
-    const order = (last?.order ?? 0) + 1
+    const maxOrder = recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b)
+    const order = maxOrder + 1
     handleRecipeAdd(order)
   }
 
   function onRecipeChange(recipe: any){
-    console.log('i am in onRecipeChange', recipe)
-    //TODO: go through all recipes and find the largest order and + 1 to that
-    const last = recipes.length && recipes[recipes.length - 1][1]
-    const order = (last?.order ?? 0) * 10
+    const maxOrder = recipes.map((r: any) => r[1].order).reduce((a, b) => a > b ? a : b)
+    const order = maxOrder + 1
     handleRecipeChange(order, recipe)
   }
 

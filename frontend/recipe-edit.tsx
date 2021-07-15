@@ -8,7 +8,7 @@
   }
 
   export default function RecipeEdit({ recipe, onRecipeChange }: Props) {
-    console.log('recipe', recipe)
+    console.log('recipe sfdsfs', recipe)
 
     function handleChange(changes: any) {
       onRecipeChange({ ...recipe, ...changes })
@@ -35,16 +35,16 @@
             onInput={ e => handleChange({ name: e.target.value })}
           />
           <label
-            htmlFor="cookTime"
+            htmlFor="cooktime"
             className={styles.label}
           >
             Cook Time
           </label>
           <input
             type="text"
-            name="cookTime"
-            id="cookTime"
-            value={recipe.cookTime}
+            name="cooktime"
+            id="cooktime"
+            // value={recipe.cooktime}
             className={styles.input}
           />
           <label
@@ -58,7 +58,7 @@
             min="1"
             name="servings"
             id="servings"
-            value={recipe.servings}
+            // value={recipe.servings}
             className={styles.input}
           />
           <label
@@ -71,9 +71,8 @@
             name="instructions"
             id="instructions"
             className={styles.input}
-          >
-            {recipe.instructions}
-          </textarea>
+            // value= {recipe.instructions}
+          />
         </div>
         <br />
         <label className={styles.label}>Ingredients</label>
@@ -81,14 +80,14 @@
           <div>Name</div>
           <div>Amount</div>
           <div></div>
-
+{/*
           {recipe.ingredients.map((ingredient: any) => (
             <RecipeIngredientEdit
               key={ingredient.id}
               ingredient={ingredient}
             />
 
-          ))}
+          ))} */}
         </div>
         <div className={styles.addIngredientBtnContainer}>
           <button className="btn btn--primary">Add Ingredient</button>

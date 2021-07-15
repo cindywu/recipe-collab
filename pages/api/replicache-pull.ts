@@ -78,7 +78,7 @@ export default async (req: any, res: any) => {
 //           order: 1,
 //           name: 'Plain Chicken',
 //           servings: 3,
-//           cookTime: '1:45',
+//           cooktime: '1:45',
 //           instructions: '1. Put salt on chicken\n2. Put chicken in a bowl\n3. Add chicken stock',
 //           ingredients: [
 //             {
@@ -102,7 +102,7 @@ export default async (req: any, res: any) => {
 //           order: 2,
 //           name: 'Plain Pork',
 //           servings: 5,
-//           cookTime: '0:45',
+//           cooktime: '0:45',
 //           instructions: '1. Put salt on pork\n2. Put pork in a bowl\n3. Eat pork',
 //           ingredients: [
 //             {

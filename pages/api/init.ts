@@ -11,7 +11,7 @@ export default async (_: any, res: any) => {
       id VARCHAR(255) PRIMARY KEY NOT NULL,
       name VARCHAR(255) NOT NULL,
       servings BIGINT NOT NULL,
-      cookTime TEXT NOT NULL,
+      cooktime TEXT NOT NULL,
       instructions TEXT NOT NULL,
       ingredients TEXT ARRAY NOT NULL,
       ord BIGINT NOT NULL,

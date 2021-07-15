@@ -87,12 +87,12 @@ async function getLastMutationID(t: any, clientID: any) {
   return 0
 }
 
-async function createRecipe(t: any, {id, name, servings, cookTime, instructions, ingredients, order}: any, version: any) {
+async function createRecipe(t: any, {id, name, servings, cooktime, instructions, ingredients, order}: any, version: any) {
   await t.none(
     `INSERT INTO recipe (
     id, name, servings, cooktime, instructions, ingredients, ord, version) values
     ($1, $2, $3, $4, $5, $6, $7, $8)`,
-    [id, name, servings, cookTime, instructions, ingredients, order, version],
+    [id, name, servings, cooktime, instructions, ingredients, order, version],
   )
 }
 
@@ -103,7 +103,8 @@ async function deleteRecipe(t: any, { id }: any) {
   )
 }
 
-async function updateRecipe(t: any, {id, name, servings, cookTime, instructions, ingredients, order}: any, version: any) {
+async function updateRecipe(t: any, {id, name, servings, cooktime, instructions, ingredients, order}: any, version: any) {
+  console.log('>>>>>>>>>> cooktime', cooktime)
   await t.none(
     `UPDATE recipe
     SET
@@ -115,7 +116,7 @@ async function updateRecipe(t: any, {id, name, servings, cookTime, instructions,
     ord = ($7),
     version = ($8)
     WHERE id = ($1)`,
-    [id, name, servings, cookTime, instructions, ingredients, order, version],
+    [id, name, servings, cooktime, instructions, ingredients, order, version],
   )
 }
 

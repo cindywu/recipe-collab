@@ -29,7 +29,7 @@ export default function Recipe({ recipe, handleRecipeSelect }: Props) {
       </div>
       <div className={styles.row}>
         <span className={styles.label}>Cook Time:</span>
-        <span className={styles.value}>{recipe.cookTime}</span>
+        <span className={styles.value}>{recipe.cooktime}</span>
       </div>
       <div className={styles.row}>
         <span className={styles.label}>Servings:</span>

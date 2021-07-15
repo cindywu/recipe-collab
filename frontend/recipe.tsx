@@ -5,9 +5,10 @@ import { RecipeContext } from '../pages/index'
 
 type Props = {
   recipe: any
+  handleRecipeSelect: (id: any) => void
 }
 
-export default function Recipe({ recipe }: Props) {
+export default function Recipe({ recipe, handleRecipeSelect }: Props) {
   const { handleRecipeDelete } = useContext(RecipeContext)
 
   function onDeleteClick() {
@@ -19,7 +20,10 @@ export default function Recipe({ recipe }: Props) {
       <div className={styles.header}>
         <h3  className={styles.title}>{recipe.name}</h3>
         <div>
-          <button className="btn btn--primary mr-1">Edit</button>
+          <button
+            className="btn btn--primary mr-1"
+            onClick={() => handleRecipeSelect(recipe.id)}
+          >Edit</button>
           <button className="btn btn--danger" onClick={onDeleteClick}>Delete</button>
         </div>
       </div>

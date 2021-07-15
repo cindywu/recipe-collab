@@ -2,7 +2,12 @@
   import styles from './recipe-edit.module.css'
   import RecipeIngredientEdit from './recipe-ingredient-edit'
 
-  export default function RecipeEdit() {
+  type Props = {
+    recipe: any
+  }
+
+  export default function RecipeEdit({ recipe }: Props) {
+    console.log('recipe', recipe)
     return (
       <div className={styles.container}>
         <div className={styles.removeBtnContainer}>
@@ -19,6 +24,7 @@
             type="text"
             name="name"
             id="name"
+            value={recipe.name}
             className={styles.input}
           />
           <label
@@ -31,6 +37,7 @@
             type="text"
             name="cookTime"
             id="cookTime"
+            value={recipe.cookTime}
             className={styles.input}
           />
           <label
@@ -44,6 +51,7 @@
             min="1"
             name="servings"
             id="servings"
+            value={recipe.servings}
             className={styles.input}
           />
           <label
@@ -56,7 +64,9 @@
             name="instructions"
             id="instructions"
             className={styles.input}
-          />
+          >
+            {recipe.instructions}
+          </textarea>
         </div>
         <br />
         <label className={styles.label}>Ingredients</label>
@@ -64,9 +74,14 @@
           <div>Name</div>
           <div>Amount</div>
           <div></div>
-          <RecipeIngredientEdit />
-          <RecipeIngredientEdit />
-          {/* Ingredient Components */}
+
+          {recipe.ingredients.map((ingredient: any) => (
+            <RecipeIngredientEdit
+              key={ingredient.id}
+              ingredient={ingredient}
+            />
+
+          ))}
         </div>
         <div className={styles.addIngredientBtnContainer}>
           <button className="btn btn--primary">Add Ingredient</button>

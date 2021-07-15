@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Recipe from './recipe'
 import { useSubscribe } from 'replicache-react'
 import styles from './recipe-list.module.css'
 import { RecipeContext } from '../pages/index'
+import RecipeEdit from './recipe-edit'
 
 type Props = {
   rep: any
@@ -10,6 +11,7 @@ type Props = {
 
 export default function RecipeList({ rep } : Props) {
   const { handleRecipeAdd } = useContext(RecipeContext)
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string>(null)
 
   const recipes = useSubscribe(
     rep,
@@ -20,6 +22,14 @@ export default function RecipeList({ rep } : Props) {
     },
     [],
   )
+  const selectedRecipe = recipes.find(recipe => recipe[1].id === selectedRecipeId)
+  console.log('selectedRecipe', selectedRecipe)
+  console.log('recipes', recipes)
+
+  function handleRecipeSelect(id: any) {
+    setSelectedRecipeId(id)
+  }
+
 
   function onRecipeAdd() {
     const last = recipes.length && recipes[recipes.length - 1][1]
@@ -35,6 +45,7 @@ export default function RecipeList({ rep } : Props) {
             <Recipe
               key={k}
               recipe={v}
+              handleRecipeSelect={handleRecipeSelect}
             />
           )
         })}
@@ -47,6 +58,7 @@ export default function RecipeList({ rep } : Props) {
           Add Recipe
         </button>
       </div>
+      {selectedRecipe && <RecipeEdit recipe={selectedRecipe[1]} />}
     </div>
   )
 }

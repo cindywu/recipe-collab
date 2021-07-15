@@ -4,6 +4,7 @@ import RecipeEdit from '../frontend/recipe-edit'
 import { Replicache } from 'replicache'
 import { v4 as uuidv4 } from 'uuid'
 import { useSubscribe } from 'replicache-react'
+import Pusher from 'pusher-js'
 
 type RecipesContextType = {
   handleRecipeAdd: (order: any) => void,
@@ -131,5 +132,15 @@ export default function Home() {
 }
 
 function listen(rep: any) {
-  console.log('rep', rep)
+  console.log('listening');
+  // Listen for pokes, and pull whenever we get one.
+  Pusher.logToConsole = true;
+  const pusher = new Pusher(process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_KEY!, {
+    cluster: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_CLUSTER,
+  });
+  const channel = pusher.subscribe('default');
+  channel.bind('poke', () => {
+    console.log('got poked');
+    rep.pull();
+  });
 }
